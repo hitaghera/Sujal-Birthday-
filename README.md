@@ -1,1 +1,94 @@
 # Sujal-Birthday-
+<!-- index.html --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surprise for Sujal</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: 20px 0;
+    }
+    a.button {
+      padding: 12px 24px;
+      background: #ff6f61;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+    a.button:hover {
+      background: #e85c50;
+    }
+  </style>
+</head>
+<body>
+  <h1>Finally! Fool is getting into his 20s 😆</h1>
+  <p>Here’s something special for you...</p>
+  <a class="button" href="birthday.html">Click to Begin the Madness!</a>
+</body>
+</html><!-- birthday.html --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Sujal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+      padding: 20px;
+      color: #222;
+    }
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 10px;
+      color: #ff6f61;
+    }
+    .quote {
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section h2 {
+      color: #444;
+      border-bottom: 2px solid #ff6f61;
+    }
+    .signature {
+      margin-top: 30px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="confetti" id="confetti-canvas"></canvas>  <h1>Happy Birthday Sujal! 🎉</h
