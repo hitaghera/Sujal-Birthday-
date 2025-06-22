@@ -3,106 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Bhaibandh</title>
+  <title>Happy Birthday Mitra</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-    background: linear-gradient(to right, #2b5876, #4e4376); /* darker cool warm */
-font-family: 'Lobster', cursive; /* stylish font */
+      background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b); /* dark purple to warm */
+      font-family: 'Pacifico', cursive;
+      color: #fff;
       overflow: hidden;
       text-align: center;
-      color: #fff;
     }
+
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
     h1 {
-      margin-top: 50px;
-      font-size: 3em;
-      text-shadow: 2px 2px #000;
+      margin-top: 20vh;
+      font-size: 4em;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
     }
 
-    .quote {
-      font-size: 1.5em;
-      margin: 20px;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      display: inline-block;
-    }
-
-    .buttons {
-      margin-top: 30px;
-    }
-
-    button {
-      margin: 10px;
+    .party-btn {
+      margin-top: 40px;
       padding: 15px 25px;
       font-size: 1.2em;
       border: none;
-      border-radius: 10px;
-      background-color: #ff9a9e;
+      border-radius: 30px;
+      background-color: #ff4081;
       color: white;
       cursor: pointer;
-      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(255, 64, 129, 0.6);
     }
 
-    button:hover {
-      background-color: #fad0c4;
+    .party-btn:hover {
+      background-color: #ff1f5a;
     }
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
+    .gift-btn {
+      margin-top: 40px;
+      padding: 20px 40px;
+      font-size: 2em;
+      border: none;
+      border-radius: 40px;
+      background-color: #ffd700;
+      color: #000;
+      cursor: pointer;
+      animation: pulse 1s infinite;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <h1>🎉 Happy Birthday Bhaibandh 🎂</h1>
+  <h1>🎂 Happy Birthday Mitra 🎂</h1>
 
-  <div class="quote">
-    "May your day be as bright as your smile and your year as awesome as your soul!"
-  </div>
-  <div class="quote">
-    "Brothers aren't just blood, they're chosen love. Cheers to you today!"
-  </div>
-  <div class="quote">
-    "To more jokes, more memories, and endless laughter. Happy Birthday!"
-  </div>
+  <button class="party-btn" onclick="blastConfetti()">🎉 More Party!</button><br>
+  <button class="gift-btn" onclick="goToNextPage()">🎁</button>
 
-  <div class="buttons">
-    <button onclick="popConfetti()">🎉 Party!</button>
-    <button onclick="popConfetti()">🥳 One More!</button>
-    <button onclick="popConfetti()">🎈 Pop Again!</button>
-    <button onclick="window.location.href='page2.html'">➡️ Go to Next Page</button>
-  </div>
+  <!-- Confetti + Balloons Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-  <canvas id="confetti" width="window.innerWidth" height="window.innerHeight"></canvas>
-  
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-<script>
-  const myConfetti = confetti;
-
-  function blastConfetti() {
-    myConfetti({
-      particleCount: 70,
-      spread: 120,
-      angle: Math.random() * 360,
-      origin: {
-        x: Math.random(),
-        y: Math.random() * 0.7
-      }
-    });
-  }
-
-  function popConfetti() {
-    for (let i = 0; i < 3; i++) {
-      blastConfetti();
+  <script>
+    function blastConfetti() {
+      confetti({
+        particleCount: 150,
+        spread: 120,
+        origin: { y: 0.6 }
+      });
     }
-  }
 
-  setInterval(blastConfetti, 3000); // continuous confetti
-</script>
+    function goToNextPage() {
+      window.location.href = "page2.html"; // change to your next page
+    }
+
+    function autoBlast() {
+      confetti({
+        particleCount: 100,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 1 }
+      });
+      confetti({
+        particleCount: 100,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 1 }
+      });
+    }
+
+    setInterval(() => {
+      autoBlast();
+    }, 1200);
+  </script>
 </body>
 </html>
