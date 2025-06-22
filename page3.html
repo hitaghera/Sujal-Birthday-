@@ -4,101 +4,168 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Birthday Mitra</title>
+
+  <!-- Elegant Vintage Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b); /* dark purple to warm */
-      font-family: 'Pacifico', cursive;
+      background: linear-gradient(to right, #B6A77A, #4B3F2F); /* Dusty vintage gradient */
+      font-family: 'Cinzel Decorative', cursive;
       color: #fff;
       overflow: hidden;
       text-align: center;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
     h1 {
-      margin-top: 20vh;
-      font-size: 4em;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+      margin-top: 15vh;
+      font-size: 3.5em;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     }
 
     .party-btn {
-      margin-top: 40px;
-      padding: 15px 25px;
+      margin: 20px 10px;
+      padding: 12px 25px;
       font-size: 1.2em;
       border: none;
-      border-radius: 30px;
-      background-color: #ff4081;
+      border-radius: 25px;
+      background-color: #D4AF37;
       color: white;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(255, 64, 129, 0.6);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
     }
 
     .party-btn:hover {
-      background-color: #ff1f5a;
+      background-color: #c19c25;
+    }
+
+    .gift-section {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .gift-btn {
-      margin-top: 40px;
-      padding: 20px 40px;
-      font-size: 2em;
+      padding: 15px 30px;
+      font-size: 1.5em;
       border: none;
       border-radius: 40px;
-      background-color: #ffd700;
-      color: #000;
+      background-color: #FFD700;
+      color: #222;
       cursor: pointer;
-      animation: pulse 1s infinite;
+      animation: pulse 1s infinite, bounce 2s infinite;
       box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
+      0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -10px); }
+    }
+
+    .gift-text {
+      margin-top: 8px;
+      font-size: 1.1em;
+      color: #FFD700;
+      text-shadow: 1px 1px 3px #000;
     }
   </style>
 </head>
 <body>
   <h1>🎂 Happy Birthday Mitra 🎂</h1>
 
-  <button class="party-btn" onclick="blastConfetti()">🎉 More Party!</button><br>
-  <button class="gift-btn" onclick="goToNextPage()">🎁</button>
+  <!-- Party Buttons -->
+  <div>
+    <button class="party-btn" onclick="blastFromButton(this)">🎉</button>
+    <button class="party-btn" onclick="blastFromButton(this)">🎊</button>
+    <button class="party-btn" onclick="blastFromButton(this)">🥳</button>
+    <button class="party-btn" onclick="blastFromButton(this)">🍾</button>
+  </div>
+
+  <!-- Gift Button -->
+  <div class="gift-section">
+    <button class="gift-btn" onclick="goToNextPage()">🎁</button>
+    <div class="gift-text">Gift for You</div>
+  </div>
 
   <!-- Confetti + Balloons Script -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
   <script>
-    function blastConfetti() {
-      confetti({
-        particleCount: 150,
-        spread: 120,
-        origin: { y: 0.6 }
-      });
-    }
-
     function goToNextPage() {
-      window.location.href = "page2.html"; // change to your next page
+      window.location.href = "page2.html";
     }
 
-    function autoBlast() {
+    function blastFromButton(btn) {
+      const rect = btn.getBoundingClientRect();
       confetti({
         particleCount: 100,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0, y: 1 }
-      });
-      confetti({
-        particleCount: 100,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1, y: 1 }
+        spread: 90,
+        origin: {
+          x: (rect.left + rect.width / 2) / window.innerWidth,
+          y: (rect.top + rect.height / 2) / window.innerHeight
+        }
       });
     }
 
-    setInterval(() => {
-      autoBlast();
-    }, 1200);
+    // Confetti blast from 4 corners on page load
+    function cornerBlasts() {
+      const settings = [
+        { x: 0, y: 0 },
+        { x: 1, y: 0 },
+        { x: 0, y: 1 },
+        { x: 1, y: 1 }
+      ];
+      settings.forEach(corner => {
+        confetti({
+          particleCount: 80,
+          spread: 120,
+          origin: corner
+        });
+      });
+    }
+
+    // Light rain of confetti and balloons
+    function lightRain() {
+      confetti({
+        particleCount: 10,
+        spread: 40,
+        origin: { x: Math.random(), y: 0 },
+        ticks: 200,
+        gravity: 0.4
+      });
+      confetti({
+        particleCount: 3,
+        spread: 30,
+        origin: { x: Math.random(), y: 0.9 },
+        shapes: ['circle'],
+        scalar: 1.2
+      });
+    }
+
+    // Page entry animations
+    window.onload = () => {
+      cornerBlasts();
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          confetti({
+            particleCount: 20,
+            spread: 70,
+            origin: { x: Math.random(), y: 1 },
+            shapes: ['circle'],
+            gravity: 0.3
+          });
+        }, i * 200);
+      }
+      setInterval(lightRain, 1000);
+    };
   </script>
 </body>
 </html>
