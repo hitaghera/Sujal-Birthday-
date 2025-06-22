@@ -128,7 +128,7 @@
     function blastFromButton(btn) {
       const rect = btn.getBoundingClientRect();
       confetti({
-        particleCount: 1000,
+        particleCount: 100,
         spread: 90,
         origin: {
           x: (rect.left + rect.width / 2) / window.innerWidth,
@@ -146,7 +146,7 @@
       ];
       settings.forEach(corner => {
         confetti({
-          particleCount: 80,
+          particleCount: 800,
           spread: 120,
           origin: corner
         });
@@ -155,7 +155,7 @@
 
     function lightConfetti() {
       confetti({
-        particleCount: 10,
+        particleCount: 100,
         spread: 40,
         origin: { x: Math.random(), y: 0 },
         ticks: 200,
