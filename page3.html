@@ -79,22 +79,23 @@
       50% { transform: translate(-50%, -10px); }
     }
 
-    /* Emoji balloon/heart rain */
-    .emoji {
-      position: absolute;
+    /* Emoji flying like page 2 of your Love site */
+    .floating-emoji {
+      position: fixed;
+      bottom: -50px;
       font-size: 2rem;
-      animation: floatEmoji 8s linear infinite;
-      z-index: 1;
+      animation: fly 10s linear infinite;
       pointer-events: none;
+      z-index: 1;
     }
 
-    @keyframes floatEmoji {
+    @keyframes fly {
       0% {
-        transform: translateY(100vh) scale(1);
+        transform: translateY(0) rotate(0deg);
         opacity: 1;
       }
       100% {
-        transform: translateY(-20vh) scale(1.2);
+        transform: translateY(-120vh) rotate(360deg);
         opacity: 0;
       }
     }
@@ -128,8 +129,8 @@
     function blastFromButton(btn) {
       const rect = btn.getBoundingClientRect();
       confetti({
-        particleCount: 100,
-        spread: 90,
+        particleCount: 150,
+        spread: 120,
         origin: {
           x: (rect.left + rect.width / 2) / window.innerWidth,
           y: (rect.top + rect.height / 2) / window.innerHeight
@@ -139,15 +140,13 @@
 
     function cornerBlasts() {
       const settings = [
-        { x: 0, y: 0 },
-        { x: 1, y: 0 },
-        { x: 0, y: 1 },
-        { x: 1, y: 1 }
+        { x: 0, y: 0 }, { x: 1, y: 0 },
+        { x: 0, y: 1 }, { x: 1, y: 1 }
       ];
       settings.forEach(corner => {
         confetti({
-          particleCount: 800,
-          spread: 120,
+          particleCount: 250,
+          spread: 150,
           origin: corner
         });
       });
@@ -155,33 +154,31 @@
 
     function lightConfetti() {
       confetti({
-        particleCount: 100,
-        spread: 40,
+        particleCount: 15,
+        spread: 60,
         origin: { x: Math.random(), y: 0 },
-        ticks: 200,
-        gravity: 0.4
+        ticks: 250,
+        gravity: 0.3
       });
     }
 
-    function createEmojiRain() {
-      const emojiArray = ['🎈', '❤️', '💖', '🎉' ,'✨️'];
+    function createFlyingEmoji() {
+      const emojiArray = ['🎈', '❤️', '💖', '🎉', '✨'];
       const emoji = document.createElement('div');
-      emoji.classList.add('emoji');
-      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.classList.add('floating-emoji');
       emoji.textContent = emojiArray[Math.floor(Math.random() * emojiArray.length)];
-      emoji.style.fontSize = Math.random() * 1.5 + 1.5 + 'rem';
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+      emoji.style.animationDuration = (8 + Math.random() * 4) + 's';
       document.body.appendChild(emoji);
-
-      setTimeout(() => {
-        emoji.remove();
-      }, 8000);
+      setTimeout(() => emoji.remove(), 12000);
     }
 
     window.onload = () => {
       cornerBlasts();
-      setInterval(lightConfetti, 1200);
-      setInterval(createEmojiRain, 500); // Emoji rain!
+      setInterval(lightConfetti, 1000);
+      setInterval(createFlyingEmoji, 200);
     };
   </script>
 </body>
-</html>
+    </html>
