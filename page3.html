@@ -78,28 +78,31 @@
     <button onclick="window.location.href='page2.html'">➡️ Go to Next Page</button>
   </div>
 
-  <canvas id="confetti"></canvas>
+  <canvas id="confetti" width="window.innerWidth" height="window.innerHeight"></canvas>
+  
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+  const myConfetti = confetti;
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script>
-    const confettiCanvas = document.getElementById('confetti');
-    const myConfetti = confetti.create(confettiCanvas, { resize: true });
-
-    function blastConfetti() {
-      myConfetti({
-        particleCount: 100,
-        spread: 160,
-        origin: { y: 0.6 }
-      });
-    }
-
-    function popConfetti() {
-      for (let i = 0; i < 3; i++) {
-        blastConfetti();
+  function blastConfetti() {
+    myConfetti({
+      particleCount: 70,
+      spread: 120,
+      angle: Math.random() * 360,
+      origin: {
+        x: Math.random(),
+        y: Math.random() * 0.7
       }
+    });
+  }
+
+  function popConfetti() {
+    for (let i = 0; i < 3; i++) {
+      blastConfetti();
     }
-    
-    setInterval(blastConfetti, 3000); // continuous confetti
-  </script>
+  }
+
+  setInterval(blastConfetti, 3000); // continuous confetti
+</script>
 </body>
 </html>
